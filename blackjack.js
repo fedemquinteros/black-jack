@@ -3,14 +3,14 @@ let dealerSum = 0;
 let yourSum = 0;
 
 let dealerAceCount = 0;
-let yourAceCount = 0; 
+let yourAceCount = 0;
 
 let hidden;
 let deck;
 
 let canHit = true; //allows the player (you) to draw while yourSum <= 21
 
-window.onload = function() {
+window.onload = function () {
     buildDeck();
     shuffleDeck();
     startGame();
@@ -68,6 +68,7 @@ function startGame() {
     console.log(yourSum);
     document.getElementById("hit").addEventListener("click", hit);
     document.getElementById("stay").addEventListener("click", stay);
+    document.getElementById("again").addEventListener("click", reset);
 
 }
 
@@ -146,3 +147,8 @@ function reduceAce(playerSum, playerAceCount) {
     }
     return playerSum;
 }
+
+function reset(){
+    location.reload();
+}
+
