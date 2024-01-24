@@ -1,4 +1,3 @@
-
 let dealerSum = 0;
 let yourSum = 0;
 
@@ -14,6 +13,8 @@ window.onload = function () {
     buildDeck();
     shuffleDeck();
     startGame();
+    playDealSound();  // Agregar esta línea para reproducir el sonido al inicio del juego
+    platHitSound();
 }
 
 function buildDeck() {
@@ -66,10 +67,12 @@ function startGame() {
     }
 
     console.log(yourSum);
-    document.getElementById("hit").addEventListener("click", hit);
+    document.getElementById("hit").addEventListener("click", function () {
+        hit();
+        platHitSound();
+    });
     document.getElementById("stay").addEventListener("click", stay);
     document.getElementById("again").addEventListener("click", reset);
-
 }
 
 function hit() {
@@ -87,7 +90,6 @@ function hit() {
     if (reduceAce(yourSum, yourAceCount) > 21) { //A, J, 8 -> 1 + 10 + 8
         canHit = false;
     }
-
 }
 
 function stay() {
@@ -105,7 +107,7 @@ function stay() {
         message = "¡Usted gana!";
     }
     //both you and dealer <= 21
-    else if (yourSum == dealerSum) {
+    else if (yourSum == dealerSum || (yourSum > 21 && dealerSum > 21)) {
         message = "¡Empate!";
     }
     else if (yourSum > dealerSum) {
@@ -114,7 +116,6 @@ function stay() {
     else if (yourSum < dealerSum) {
         message = "¡Usted pierde!";
     }
-
     document.getElementById("dealer-sum").innerText = dealerSum;
     document.getElementById("your-sum").innerText = yourSum;
     document.getElementById("results").innerText = message;
@@ -148,7 +149,21 @@ function reduceAce(playerSum, playerAceCount) {
     return playerSum;
 }
 
-function reset(){
+function reset() {
     location.reload();
+}
+
+function playDealSound() {
+    // Obtener el elemento de audio
+    let dealSound = document.getElementById("dealSound");
+
+    // Reproducir el sonido
+    dealSound.play();
+}
+
+function platHitSound() {
+
+    let hitSound = document.getElementById("hitSound");
+    hitSound.play();
 }
 

@@ -7,7 +7,9 @@
         <link rel="stylesheet" href="blackjack.css">
         <link rel="shortcut icon" href="cards/icono.png" type="image/x-icon">
         <link rel="stylesheet" href="https://use.typekit.net/hom4qvt.css">
-        <script src="blackjack.js"></script>
+        <audio id="dealSound" src="sonidocartas.mp3"></audio>
+        
+
     </head>
 
     <body>
@@ -20,9 +22,10 @@
         <div id="your-cards"></div>
 
         <br>
-        <div class="botones"><button id="hit">Pedir</button>
+        <div class="botones"><button id="hit"><audio  id="hitSound" src="blackjack_1.mp3"></audio>Pedir</button>
         <button id="stay">Quedarse</button>
         <button id="again">Reiniciar</button></div>
         <p id="results"></p>
+        <script src="blackjack.js"></script>
     </body>
 </html>
